@@ -188,43 +188,24 @@ const Navbar = ({
             </ul>
 
             <ul className="navbar-nav ml-4">
-              {user.photo ? (
-                <li className="nav-item">
-                  <Link
-                    className="nav-link lead"
-                    to="/myprofile"
-                    data-tip={`Logout ${username}`}
-                  >
-                    <img
-                      src={user.photo}
-                      alt=""
-                      width="36px"
-                      height="36px"
-                      className="rounded-circle"
-                    />{" "}
-                  </Link>
-                  <ReactTooltip />
-                </li>
-              ) : (
-                <li className="nav-item">
-                  <Link
-                    className="nav-link lead"
-                    onClick={logout}
-                    to="/login"
-                    data-tip={username}
-                  >
-                    <UIAvatar
-                      name={username}
-                      size={36}
-                      background="#E61313"
-                      color="#ffffff"
-                      rounded={true}
-                      bold="true"
-                    />
-                  </Link>
-                  <ReactTooltip />
-                </li>
-              )}
+              <li className="nav-item">
+                <Link
+                  className="nav-link lead"
+                  to="/myprofile"
+                  data-tip="My Profile"
+                >
+                  <UIAvatar
+                    name={username}
+                    size={36}
+                    background="#E61313"
+                    color="#ffffff"
+                    rounded={true}
+                    bold="true"
+                  />
+                </Link>
+                <ReactTooltip />
+              </li>
+
               <li className="nav-item">
                 <Link
                   to="/login"
