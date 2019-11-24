@@ -8,7 +8,13 @@ const APIFeatures = require("../utils/apiFeatures");
 
 exports.createActivityLog = catchAsync(async (req, res, next) => {
   console.log(req.user);
-  const { activity, subActivity, operateEmail, priority } = req.body;
+  const {
+    activity,
+    subActivity,
+    operateEmail,
+    priority,
+    description
+  } = req.body;
   const { name, email } = req.user;
 
   const receiverOutput = `
@@ -22,6 +28,8 @@ exports.createActivityLog = catchAsync(async (req, res, next) => {
     <p>${activity}</p>
   <ul>
     <li>${subActivity}: ${operateEmail ? operateEmail : ""}</li>
+    <li>${description ? description : ""}</li>
+
   </ul>`;
 
   const senderOutput = `
@@ -37,6 +45,7 @@ exports.createActivityLog = catchAsync(async (req, res, next) => {
   <p>${activity}</p>
   <ul>
     <li>${subActivity}: ${operateEmail ? operateEmail : ""}</li>
+    <li>${description ? description : ""}</li>
   </ul>
   <small>Please ignore this email if it's not meant for you. Thank you.</small>`;
 
