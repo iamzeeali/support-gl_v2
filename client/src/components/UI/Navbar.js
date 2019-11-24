@@ -213,7 +213,7 @@ const Navbar = ({
                     className="nav-link lead"
                     onClick={logout}
                     to="/login"
-                    data-tip={`Logout ${username}`}
+                    data-tip={username}
                   >
                     <UIAvatar
                       name={username}
@@ -230,10 +230,9 @@ const Navbar = ({
                 <Link
                   to="/login"
                   onClick={logout}
-
                   style={{ textDecoration: "none" }}
                   className="nav-link lead"
-                  data-tip="My Profile"
+                  data-tip={`Logout ${username}`}
                 >
                   <i className="fa fa-sign-out fa-lg"></i>
                 </Link>
