@@ -21,9 +21,9 @@ export const getCurrentRequest = id => async dispatch => {
 
 //*****************************************LOGGED IN USER DATA****************************************** */
 //Get user's Requests
-export const getRequests = () => async dispatch => {
+export const getRequests = page => async dispatch => {
   try {
-    const res = await axios.get("/api/activityLog");
+    const res = await axios.get(`/api/activityLog?page=${page}`);
     dispatch({
       type: types.GET_REQUESTS,
       payload: res.data

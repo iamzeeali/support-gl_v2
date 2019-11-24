@@ -7,6 +7,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const CLEAR_USER = "CLEAR_USER";
+export const USER_UPDATED = "USER_UPDATED";
 
 export const CLEAR_FILTER = "CLEAR_FILTER";
 

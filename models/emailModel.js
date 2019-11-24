@@ -10,8 +10,7 @@ const emailSchema = new mongoose.Schema({
   },
   company: {
     type: mongoose.Schema.ObjectId,
-    ref: "Company",
-    select: false
+    ref: "Company"
   },
   operateEmail: {
     type: String,
@@ -37,7 +36,10 @@ emailSchema.pre(/^find/, function(next) {
   this.populate({
     path: "user",
     select: "name email company"
-  });
+  }).populate({
+    path: "company",
+    select: "companyName"
+  })
 
   next();
 });

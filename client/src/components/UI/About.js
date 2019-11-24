@@ -6,6 +6,7 @@ const About = () => {
       <iframe
         className="embed-responsive-item"
         src="https://globuslabs.com/"
+        title="Globus Labs"
         allowfullscreen
       ></iframe>
     </div>

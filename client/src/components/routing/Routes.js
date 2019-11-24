@@ -19,11 +19,13 @@ import AddRequest from "../request/AddRequest";
 import AdminRequest from "../request/AdminRequest";
 import EditSuperAdminRequest from "../request/EditSuperAdminRequest";
 
+import Email from "../request/Email";
 import AddEmail from "../request/AddEmail";
 import DeleteEmail from "../request/DeleteEmail";
 import ChangePassword from "../request/ChangePassword";
 
 import CompanyProfile from "../profile/CompanyProfile";
+import MyProfile from "../profile/MyProfile";
 
 import MyReport from "../report/MyReport";
 import CompanyReport from "../report/CompanyReport";
@@ -60,6 +62,7 @@ const Routes = () => {
           path={"/editRequest/:id"}
           component={EditSuperAdminRequest}
         />
+        <PrivateRoute exact path={"/email"} component={Email} />
         <PrivateRoute exact path={"/addEmail"} component={AddEmail} />
         <PrivateRoute exact path={"/deleteEmail"} component={DeleteEmail} />
         <PrivateRoute
@@ -68,6 +71,7 @@ const Routes = () => {
           component={ChangePassword}
         />
         <PrivateRoute exact path="/mycompany" component={CompanyProfile} />
+        <PrivateRoute exact path="/myprofile" component={MyProfile} />
 
         <PrivateRoute exact path="/user" component={User} />
         <PrivateRoute exact path="/addUser" component={AddUser} />

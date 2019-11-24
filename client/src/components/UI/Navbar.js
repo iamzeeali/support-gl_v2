@@ -7,7 +7,7 @@ import ReactTooltip from "react-tooltip";
 import { logout } from "../../_actions/authAction";
 
 const Navbar = ({
-  auth: { username, isAuthenticated, loading, role },
+  auth: { username, isAuthenticated, loading, role, user },
   logout
 }) => {
   const authLinks = (
@@ -57,24 +57,38 @@ const Navbar = ({
               </button>
             </form>
             <ul className="navbar-nav ml-4">
-              <li className="nav-item">
-                <Link
-                  className="nav-link lead"
-                  onClick={logout}
-                  to="/login"
-                  data-tip={`Logout ${username}`}
-                >
-                  <UIAvatar
-                    name={username}
-                    size={36}
-                    background="#E61313"
-                    color="#ffffff"
-                    rounded={true}
-                    bold="true"
-                  />
-                </Link>
-                <ReactTooltip />
-              </li>
+              {user.photo ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link lead"
+                    onClick={logout}
+                    to="/login"
+                    data-tip={`Logout ${username}`}
+                  >
+                    <img src={user.photo} alt="" />{" "}
+                  </Link>
+                  <ReactTooltip />
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link lead"
+                    onClick={logout}
+                    to="/login"
+                    data-tip={`Logout ${username}`}
+                  >
+                    <UIAvatar
+                      name={username}
+                      size={36}
+                      background="#E61313"
+                      color="#ffffff"
+                      rounded={true}
+                      bold="true"
+                    />
+                  </Link>
+                  <ReactTooltip />
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -142,6 +156,7 @@ const Navbar = ({
               <li className="nav-item dropdown">
                 <i className="dropbtn fa fa-envelope fa-lg lead nav-link"></i>
                 <div className="dropdown-content">
+                  <Link to="/email">View Email</Link>
                   <Link to="/addEmail">Add Email</Link>
                   <Link to="/deleteEmail">Suspend Email</Link>
                   <Link to="/changePassword">Change Password</Link>
@@ -166,7 +181,7 @@ const Navbar = ({
                     className="nav-link lead"
                     data-tip="Members"
                   >
-                    <i className="fa fa-user fa-lg"></i>
+                    <i className="fa fa-group fa-lg"></i>
                   </Link>
                 </li>
               ) : null}
@@ -174,29 +189,53 @@ const Navbar = ({
 
             <ul className="navbar-nav ml-4">
               <li className="nav-item">
-                <Link className="nav-link lead" to="/about">
-                  about
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link
+                  to="/myprofile"
+                  style={{ textDecoration: "none" }}
                   className="nav-link lead"
-                  onClick={logout}
-                  to="/login"
-                  data-tip="Logout"
+                  data-tip="My Profile"
                 >
-                  {" "}
-                  <UIAvatar
-                    name={username}
-                    size={36}
-                    background="#E61313"
-                    color="#ffffff"
-                    rounded={true}
-                    bold="true"
-                  />
+                  <i className="fa fa-user fa-lg"></i>
                 </Link>
-                <ReactTooltip />
               </li>
+              {user.photo ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link lead"
+                    onClick={logout}
+                    to="/login"
+                    data-tip={`Logout ${username}`}
+                  >
+                    <img
+                      src={user.photo}
+                      alt=""
+                      width="36px"
+                      height="36px"
+                      className="rounded-circle"
+                    />{" "}
+                  </Link>
+                  <ReactTooltip />
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link lead"
+                    onClick={logout}
+                    to="/login"
+                    data-tip={`Logout ${username}`}
+                  >
+                    <UIAvatar
+                      name={username}
+                      size={36}
+                      background="#E61313"
+                      color="#ffffff"
+                      rounded={true}
+                      bold="true"
+                    />
+                  </Link>
+                  <ReactTooltip />
+                </li>
+              )}
             </ul>
           </div>
         </div>

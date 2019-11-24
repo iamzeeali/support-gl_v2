@@ -7,12 +7,13 @@ const AppError = require("../utils/appError");
 const APIFeatures = require("../utils/apiFeatures");
 
 exports.createActivityLog = catchAsync(async (req, res, next) => {
+  console.log(req.user);
   const { activity, subActivity, operateEmail, priority } = req.body;
   const { name, email } = req.user;
 
   const receiverOutput = `
     <h3><u>Requesting Party:</u></h3>
-    <ul>  
+    <ul>
       <li>Name: ${name}</li>
       <li>Email: ${email}</li>
       <li>Company: ${req.user.company.companyName}</li>
@@ -26,7 +27,7 @@ exports.createActivityLog = catchAsync(async (req, res, next) => {
   const senderOutput = `
   <p>Your new support request has been sent successfully. It will be addressed within 2 working hours.</p>
   <h3><u>Requesting Party</u></h3>
-  <ul>  
+  <ul>
     <li>Priority: ${priority}</li>
     <li>Name: ${name}</li>
     <li>Email: ${email}</li>
@@ -36,11 +37,12 @@ exports.createActivityLog = catchAsync(async (req, res, next) => {
   <p>${activity}</p>
   <ul>
     <li>${subActivity}: ${operateEmail ? operateEmail : ""}</li>
-  </ul>`;
+  </ul>
+  <small>Please ignore this email if it's not meant for you. Thank you.</small>`;
 
   try {
     // const doc = await ActivityLog.create(req.body);
-    let maillist = ["zeeshan@globuslabs.com"];
+    let maillist = ["zeeshan@globuslabs.com", "azahar.ahmad@globuslabs.com"];
     const newActivityLog = new ActivityLog({
       activity,
       subActivity,
@@ -55,13 +57,12 @@ exports.createActivityLog = catchAsync(async (req, res, next) => {
 
     await sendEmail({
       to: maillist,
-      bcc: "mdzeeshanali93@gmail.com",
       subject: `New Activity- ${req.user.company.companyName}`,
       output: receiverOutput
     });
     await sendEmail({
       to: email,
-      bcc: "mdzeeshanali93@gmail.com",
+      bcc: "zeeshan.globuslabs@gmail.com",
       subject: `Globus Labs support for- ${req.user.company.companyName}`,
       output: senderOutput
     });
@@ -81,6 +82,7 @@ exports.createActivityLog = catchAsync(async (req, res, next) => {
 
 //Get user's logs only
 exports.getActivityLogs = catchAsync(async (req, res, next) => {
+  console.log(req.query);
   const features = await new APIFeatures(
     ActivityLog.find({ user: req.user.id }),
     req.query

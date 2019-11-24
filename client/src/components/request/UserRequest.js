@@ -93,6 +93,8 @@ const UserRequest = ({
               <th scope="col">Req for</th>
               <th scope="col">Req on</th>
               <th scope="col">Status</th>
+              <th scope="col">Description</th>
+              <th scope="col">Email</th>
               <th scope="col">Priority</th>
               <th scope="col">Closed On</th>
             </tr>
@@ -112,6 +114,9 @@ const UserRequest = ({
                 <td>
                   {request.openStatus === true ? openStatus : closeStatus}
                 </td>
+                <td>{request.description && request.description}</td>
+                <td>{request.email && request.email}</td>
+
                 <td>
                   {request.priority === "low" ? lowPriority : highPriority}
                 </td>

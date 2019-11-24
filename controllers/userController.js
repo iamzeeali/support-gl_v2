@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const factory = require("./handlerFactory");
+const path = require("path");
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -94,3 +95,40 @@ exports.getUser = factory.getOne(User);
 //Do not update password with this
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
+
+// ******************************************UPLOAD***********************************
+exports.upload = catchAsync(async (req, res, next) => {
+  const file = req.files.file;
+  const filename = Date.now() + file.name;
+  const filePath = `/uploads/${filename}`;
+  const photo = filePath;
+
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.id,
+    { photo },
+    {
+      new: true,
+      runValidators: true
+    }
+  );
+
+  if (req.files === null) {
+    return res.status(400).json({ msg: "No file uploaded" });
+  }
+
+  file.mv(`${__dirname}/../client/public/uploads/${filename}`, err => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    res.json({
+      fileName: filename,
+      filePath: filePath,
+      status: "success",
+      data: {
+        user: updatedUser
+      }
+    });
+  });
+});

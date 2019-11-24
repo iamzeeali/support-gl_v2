@@ -9,6 +9,8 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const compression = require("compression");
+const fileUpload = require("express-fileupload");
+const catchAsync = require("./utils/catchAsync");
 
 const userRouter = require("./routes/userRoutes");
 const companyRouter = require("./routes/companyRoutes");
@@ -35,7 +37,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"));
 
 // *********************GLOBAL MIDDLEWARES*******************************
-
+app.use(fileUpload());
 //set security http headers
 app.use(helmet());
 

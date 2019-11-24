@@ -13,7 +13,7 @@ const sendEmail = async options => {
 
   // 2) Define the email options
   const mailOptions = {
-    from: "test@test.com",
+    from: process.env.EMAIL_FROM,
     to: options.to,
     bcc: options.bcc,
     subject: options.subject,
@@ -26,3 +26,5 @@ const sendEmail = async options => {
 };
 
 module.exports = sendEmail;
+
+//50.28.67.11
