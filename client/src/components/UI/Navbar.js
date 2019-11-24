@@ -188,12 +188,10 @@ const Navbar = ({
             </ul>
 
             <ul className="navbar-nav ml-4">
-             
               {user.photo ? (
                 <li className="nav-item">
                   <Link
                     className="nav-link lead"
-                   
                     to="/myprofile"
                     data-tip={`Logout ${username}`}
                   >
@@ -226,7 +224,8 @@ const Navbar = ({
                   </Link>
                   <ReactTooltip />
                 </li>
-                <li className="nav-item">
+              )}
+              <li className="nav-item">
                 <Link
                   to="/login"
                   onClick={logout}
@@ -237,7 +236,6 @@ const Navbar = ({
                   <i className="fa fa-sign-out fa-lg"></i>
                 </Link>
               </li>
-              )}
             </ul>
           </div>
         </div>
