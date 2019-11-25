@@ -61,11 +61,16 @@ const Navbar = ({
                 <li className="nav-item">
                   <Link
                     className="nav-link lead"
-                    onClick={logout}
-                    to="/login"
-                    data-tip={`Logout ${username}`}
+                    to="/myprofile"
+                    data-tip="My Profile"
                   >
-                    <img src={user.photo} alt="" />{" "}
+                    <img
+                      src={user.photo}
+                      alt=""
+                      width="36px"
+                      height="36px"
+                      className="rounded-circle"
+                    />{" "}
                   </Link>
                   <ReactTooltip />
                 </li>
@@ -73,9 +78,8 @@ const Navbar = ({
                 <li className="nav-item">
                   <Link
                     className="nav-link lead"
-                    onClick={logout}
-                    to="/login"
-                    data-tip={`Logout ${username}`}
+                    to="/myprofile"
+                    data-tip="My Profile"
                   >
                     <UIAvatar
                       name={username}
@@ -89,6 +93,18 @@ const Navbar = ({
                   <ReactTooltip />
                 </li>
               )}
+
+              <li className="nav-item">
+                <Link
+                  to="/login"
+                  onClick={logout}
+                  style={{ textDecoration: "none" }}
+                  className="nav-link lead"
+                  data-tip={`Logout ${username}`}
+                >
+                  <i className="fa fa-sign-out fa-lg"></i>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -188,23 +204,42 @@ const Navbar = ({
             </ul>
 
             <ul className="navbar-nav ml-4">
-              <li className="nav-item">
-                <Link
-                  className="nav-link lead"
-                  to="/myprofile"
-                  data-tip="My Profile"
-                >
-                  <UIAvatar
-                    name={username}
-                    size={36}
-                    background="#E61313"
-                    color="#ffffff"
-                    rounded={true}
-                    bold="true"
-                  />
-                </Link>
-                <ReactTooltip />
-              </li>
+              {user.photo ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link lead"
+                    to="/myprofile"
+                    data-tip="My Profile"
+                  >
+                    <img
+                      src={user.photo}
+                      alt=""
+                      width="36px"
+                      height="36px"
+                      className="rounded-circle"
+                    />{" "}
+                  </Link>
+                  <ReactTooltip />
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link lead"
+                    to="/myprofile"
+                    data-tip="My Profile"
+                  >
+                    <UIAvatar
+                      name={username}
+                      size={36}
+                      background="#E61313"
+                      color="#ffffff"
+                      rounded={true}
+                      bold="true"
+                    />
+                  </Link>
+                  <ReactTooltip />
+                </li>
+              )}
 
               <li className="nav-item">
                 <Link

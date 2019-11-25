@@ -11,6 +11,7 @@ export const loadUser = () => async dispatch => {
 
   try {
     const res = await axios.get("/api/user/me");
+    console.log(res.data);
     dispatch({
       type: types.USER_LOADED,
       payload: res.data
@@ -22,7 +23,7 @@ export const loadUser = () => async dispatch => {
   }
 };
 
-// Load User
+// Get Users
 export const getUsers = () => async dispatch => {
   try {
     const res = await axios.get("/api/user/");
@@ -62,6 +63,29 @@ export const addUser = (formData, history) => async dispatch => {
   }
 };
 
+// Update me
+export const updateMe = (photoData, history) => async dispatch => {
+  console.log(photoData);
+  try {
+    const res = await axios.patch("/api/user/updateMe", photoData);
+
+    console.log(res.data);
+    dispatch({
+      type: types.USER_LOADED,
+      payload: res.data
+    });
+
+    dispatch(setAlert("Profile Updated!", "success"));
+    dispatch(loadUser());
+
+    // history.push("/dashboard");
+  } catch (err) {
+    dispatch({
+      type: types.AUTH_ERROR
+    });
+  }
+};
+
 // Login User
 export const login = (email, password) => async dispatch => {
   const config = {
@@ -79,6 +103,28 @@ export const login = (email, password) => async dispatch => {
       payload: res.data
     });
     dispatch(loadUser());
+  } catch (err) {
+    const errors = err.response.data;
+    if (errors) {
+      dispatch(setAlert(errors.message, "danger"));
+    }
+
+    dispatch({
+      type: types.LOGIN_FAIL
+    });
+  }
+};
+
+// Update My Password
+export const updateMyPassword = (formData, history) => async dispatch => {
+  try {
+    const res = await axios.patch("/api/user/updateMyPassword", formData);
+
+    dispatch({
+      type: types.LOGIN_SUCCESS,
+      payload: res.data
+    });
+    dispatch(setAlert("Password Updated!", "success"));
   } catch (err) {
     const errors = err.response.data;
     if (errors) {
