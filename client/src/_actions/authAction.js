@@ -11,7 +11,6 @@ export const loadUser = () => async dispatch => {
 
   try {
     const res = await axios.get("/api/user/me");
-    console.log(res.data);
     dispatch({
       type: types.USER_LOADED,
       payload: res.data
@@ -65,11 +64,9 @@ export const addUser = (formData, history) => async dispatch => {
 
 // Update me
 export const updateMe = (photoData, history) => async dispatch => {
-  console.log(photoData);
   try {
     const res = await axios.patch("/api/user/updateMe", photoData);
 
-    console.log(res.data);
     dispatch({
       type: types.USER_LOADED,
       payload: res.data
