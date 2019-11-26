@@ -15,7 +15,7 @@ const Navbar = ({
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div className="container-fluid">
           <Link className="navbar-brand lead" to="/">
-            <img src="./logo.png" alt="globus labs logo" width="220px" />
+            <img src="./gl-logo.png" alt="globus labs logo" width="220px" />
           </Link>
           <button
             className="navbar-toggler"
@@ -117,11 +117,7 @@ const Navbar = ({
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div className="container-fluid">
           <Link className="navbar-brand lead" to="/">
-            <img
-              src="http://globuslabs.com/images/logo1.png"
-              alt="globus labs logo"
-              width="200px"
-            />
+            <img src="./gl-logo.png" alt="globus labs logo" width="200px" />
           </Link>
           <button
             className="navbar-toggler"
@@ -264,11 +260,7 @@ const Navbar = ({
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand lead" to="/">
-            <img
-              src="http://globuslabs.com/images/logo1.png"
-              alt="globus labs logo"
-              width="220px"
-            />
+            <img src="./gl-logo.png" alt="globus labs logo" width="220px" />
           </Link>
           <button
             className="navbar-toggler"
