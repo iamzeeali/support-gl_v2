@@ -101,8 +101,8 @@ const SuperAdminRequest = ({
               <tr key={req._id}>
                 <td>{req.activity}</td>
                 <td>{req.subActivity}</td>
-                <td>{req.user.name}</td>
-                <td>{req.user.company.companyName}</td>
+                <td>{req.user && req.user.name}</td>
+                <td>{req.user && req.user.company.companyName}</td>
                 <td>
                   {" "}
                   <Moment format="DD/MM/YYYY, h:mm:ss a">{req.date}</Moment>
@@ -138,7 +138,8 @@ SuperAdminRequest.propTypes = {
   getAllRequests: PropTypes.func.isRequired,
   deleteRequest: PropTypes.func.isRequired,
   setCurrentRequest: PropTypes.func.isRequired,
-  clearRequest: PropTypes.func.isRequired
+  clearRequest: PropTypes.func.isRequired,
+  requests: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
