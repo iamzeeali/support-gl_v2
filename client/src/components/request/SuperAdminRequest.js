@@ -19,17 +19,17 @@ const SuperAdminRequest = ({
   clearRequest,
   requests,
   filtered,
-  loading
+  loading,
+  history
 }) => {
   useEffect(() => {
     getAllRequests();
     //eslint-diable-next-line
   }, [getAllRequests]);
 
-  // const onDeleteHandler = id => {
-  //   deleteRequest(id);
-  //   clearRequest();
-  // };
+  const onDeleteHandler = id => {
+    deleteRequest(id, history);
+  };
 
   const openStatus = (
     <i class="fa fa-clock-o text-warning text-center" aria-hidden="true"></i>
@@ -121,10 +121,6 @@ const SuperAdminRequest = ({
                   >
                     <i className="fa fa-edit fa-lg"></i>
                   </Link>{" "}
-                  &nbsp; &nbsp;
-                  {/* <Link title="Delete" onClick={() => onDeleteHandler(req._id)}>
-                    <i className="fa fa-trash text-danger fa-lg"></i>
-                  </Link> */}
                 </td>
               </tr>
             ))}

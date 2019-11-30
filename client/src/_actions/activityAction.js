@@ -136,8 +136,7 @@ export const deleteActivity = id => async dispatch => {
       });
     } catch (err) {
       dispatch({
-        type: types.ACTIVITY_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
+        type: types.ACTIVITY_ERROR
       });
     }
   }

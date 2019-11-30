@@ -217,22 +217,14 @@ export const addRequest = (formData, history) => async dispatch => {
 
     history.push("/request");
   } catch (err) {
-    const errors = err.response.data.errors;
+    // const errors = err.response.data.errors;
 
-    if (errors) {
-      errors.forEach(error =>
-        dispatch(
-          setAlert(
-            error.msg ? error.msg : "Something went wrong, try again",
-            "danger"
-          )
-        )
-      );
+    if (err) {
+      dispatch(setAlert("Something went wrong, try again", "danger"));
     }
 
     dispatch({
-      type: types.REQUEST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      type: types.REQUEST_ERROR
     });
   }
 };
@@ -401,8 +393,7 @@ export const deleteRequest = id => async dispatch => {
       });
     } catch (err) {
       dispatch({
-        type: types.REQUEST_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
+        type: types.REQUEST_ERROR
       });
     }
   }

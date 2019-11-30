@@ -105,8 +105,7 @@ export const deleteCompany = id => async dispatch => {
       });
     } catch (err) {
       dispatch({
-        type: types.COMPANY_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
+        type: types.COMPANY_ERROR
       });
     }
   }

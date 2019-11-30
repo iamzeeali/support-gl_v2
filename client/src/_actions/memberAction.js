@@ -109,8 +109,7 @@ export const deleteMember = id => async dispatch => {
       });
     } catch (err) {
       dispatch({
-        type: types.MEMBER_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
+        type: types.MEMBER_ERROR
       });
     }
   }

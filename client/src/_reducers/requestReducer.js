@@ -108,21 +108,9 @@ export default function(state = initialState, action) {
       return {
         ...state,
         request: null,
-        requests: [],
-        companyRequests: [],
-        emails: [],
-        email: null,
-        error: {},
-        filtered: null,
+
         loading: true,
-        sendingLoader: false,
-        open: null,
-        openStatus: null,
-        companyOpenStatus: null,
-        thirtyDaysRequestsCount: null,
-        companyThirtyDaysRequestsCount: null,
-        openStatusCount: null,
-        companyOpenStatusCount: null
+        sendingLoader: false
       };
     case types.GET_EMAILS:
       return {
