@@ -67,7 +67,7 @@ const Activity = ({
                     ))}
                   </ul>
                 </td>
-                <td>{act.company.companyName}</td>
+                <td>{act.company && act.company.companyName}</td>
 
                 <td>
                   <Link
@@ -110,7 +110,9 @@ const mapStateToProps = state => ({
   filtered: state.activity.filtered,
   loading: state.activity.loading
 });
-export default connect(
-  mapStateToProps,
-  { getActivities, deleteActivity, setCurrentActivity, clearActivity }
-)(Activity);
+export default connect(mapStateToProps, {
+  getActivities,
+  deleteActivity,
+  setCurrentActivity,
+  clearActivity
+})(Activity);

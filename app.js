@@ -10,7 +10,6 @@ const xss = require("xss-clean");
 const hpp = require("hpp");
 const compression = require("compression");
 const fileUpload = require("express-fileupload");
-const catchAsync = require("./utils/catchAsync");
 
 const userRouter = require("./routes/userRoutes");
 const companyRouter = require("./routes/companyRoutes");

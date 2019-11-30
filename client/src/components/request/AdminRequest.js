@@ -106,8 +106,8 @@ const AdminRequest = ({
               <tr key={request._id}>
                 <td>{request.activity}</td>
                 <td>{request.subActivity}</td>
-                <td>{request.user.name}</td>
-                <td>{request.user.company.companyName}</td>
+                <td>{request.user && request.user.name}</td>
+                <td>{request.user && request.user.company.companyName}</td>
                 <td>
                   {" "}
                   <Moment format="DD/MM/YYYY, h:mm:ss a">{request.date}</Moment>

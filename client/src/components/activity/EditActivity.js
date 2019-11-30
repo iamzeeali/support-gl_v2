@@ -6,20 +6,25 @@ import {
   editActivity,
   getCurrentActivity
 } from "../../_actions/activityAction";
+import { getCompanies } from "../../_actions/companyAction";
 
 const EditActivity = ({
   activity: { activity, loading },
   editActivity,
+  getCompanies,
   getCurrentActivity,
   history,
+  companies,
   match
 }) => {
   const [formData, setFormData] = useState({
+    company: "",
     activityName: "",
     subActivities: ""
   });
 
   useEffect(() => {
+    getCompanies();
     getCurrentActivity(match.params.id);
 
     setFormData({
@@ -29,9 +34,9 @@ const EditActivity = ({
         loading || !activity.subActivities ? "" : activity.subActivities
     });
     //eslint-disable-next-line
-  }, [loading, getCurrentActivity]);
+  }, [loading, getCurrentActivity, getCompanies]);
 
-  const { activityName, subActivities } = formData;
+  const { activityName, subActivities, company } = formData;
 
   const onChangeHandler = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -66,6 +71,23 @@ const EditActivity = ({
                   className="form-signin"
                   onSubmit={e => onSubmitHandler(e)}
                 >
+                  <div className="form-label-group">
+                    <select
+                      className="form-control"
+                      value={company}
+                      name="company"
+                      onChange={e => onChangeHandler(e)}
+                      required
+                    >
+                      <option className="text-muted">-Select Company-</option>
+                      {companies.map(comp => (
+                        <option key={comp._id} value={comp._id}>
+                          {comp.companyName}
+                        </option>
+                      ))}
+                      ;
+                    </select>
+                  </div>
                   <div className="form-label-group">
                     <input
                       type="text"
@@ -115,14 +137,17 @@ const EditActivity = ({
 EditActivity.propTypes = {
   editActivity: PropTypes.func.isRequired,
   getCurrentActivity: PropTypes.func.isRequired,
-  activity: PropTypes.object.isRequired
+  activity: PropTypes.object.isRequired,
+  getCompanies: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  activity: state.activity
+  activity: state.activity,
+  companies: state.company.companies
 });
 
-export default connect(
-  mapStateToProps,
-  { editActivity, getCurrentActivity }
-)(withRouter(EditActivity));
+export default connect(mapStateToProps, {
+  editActivity,
+  getCurrentActivity,
+  getCompanies
+})(withRouter(EditActivity));

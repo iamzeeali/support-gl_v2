@@ -55,6 +55,7 @@ exports.createActivityLog = catchAsync(async (req, res, next) => {
     const newActivityLog = new ActivityLog({
       activity,
       subActivity,
+      description,
       name: req.user.name,
       company: req.user.company.id,
       email: req.user.email,

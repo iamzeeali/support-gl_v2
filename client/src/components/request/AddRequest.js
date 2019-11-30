@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Sending from "../UI/Sending";
+import Spinner from "../UI/Spinner";
 import { addRequest } from "../../_actions/requestAction";
 import {
   getCompanyActivities,
@@ -166,7 +167,7 @@ const AddRequest = ({
       </div>
 
       {sendingLoader ? (
-        <Sending />
+        <Spinner />
       ) : (
         <div className="animated fadeIn">
           <div className="row">

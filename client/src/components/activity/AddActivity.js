@@ -60,6 +60,7 @@ const AddActivity = ({ addActivity, companies, getCompanies, history }) => {
                       value={company}
                       name="company"
                       onChange={e => onChangeHandler(e)}
+                      required
                     >
                       <option className="text-muted">-Select Company-</option>
                       {companies.map(comp => (
@@ -124,7 +125,6 @@ AddActivity.propTypes = {
 const mapStatetoProps = state => ({
   companies: state.company.companies
 });
-export default connect(
-  mapStatetoProps,
-  { addActivity, getCompanies }
-)(withRouter(AddActivity));
+export default connect(mapStatetoProps, { addActivity, getCompanies })(
+  withRouter(AddActivity)
+);
