@@ -367,7 +367,7 @@ export const editRequest = (formData, history, id) => async dispatch => {
 
     dispatch(setAlert("Request Updated", "success"));
 
-    // history.push("/request");
+    history.push("/request");
   } catch (err) {
     console.log(err);
 

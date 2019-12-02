@@ -93,6 +93,7 @@ const SuperAdminRequest = ({
               <th scope="col">Description</th>
               <th scope="col">Status</th>
               <th scope="col">Priority</th>
+              <th scope="col">Closed On</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -112,6 +113,15 @@ const SuperAdminRequest = ({
 
                 <td>{req.openStatus === true ? openStatus : closeStatus}</td>
                 <td> {req.priority === "low" ? lowPriority : highPriority}</td>
+                <td>
+                  {req.closeDate ? (
+                    <Moment format="DD/MM/YYYY, h:mm:ss a">
+                      {req.closeDate}
+                    </Moment>
+                  ) : (
+                    openStatus
+                  )}
+                </td>
 
                 <td>
                   <Link
