@@ -49,6 +49,7 @@ const SuperAdminRequest = ({
   const lowPriority = (
     <span className="badge badge-warning text-center">Low</span>
   );
+
   return (
     <Fragment>
       <div className="form-title animated fadeIn">
@@ -84,6 +85,7 @@ const SuperAdminRequest = ({
 
       <div className="container">
         <FilterRequest />
+
         <br />
       </div>
       {requests !== null && !loading ? (
