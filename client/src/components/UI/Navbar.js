@@ -305,7 +305,7 @@ const Navbar = ({
             <ul className="navbar-nav ml-4">
               <li className="nav-item">
                 <Link className="nav-link lead" to="/login">
-                  <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+                  <i className="fa fa-sign-in" aria-hidden="true"></i> Login
                 </Link>
               </li>
             </ul>
