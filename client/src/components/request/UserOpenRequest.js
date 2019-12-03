@@ -32,6 +32,9 @@ const UserOpenRequest = ({ getOpenStatus, requests, loading }) => {
   const highPriority = (
     <span className="badge badge-danger text-center">High</span>
   );
+  const modPriority = (
+    <span className="badge badge-info text-center">Moderate</span>
+  );
   const lowPriority = (
     <span className="badge badge-warning text-center">Low</span>
   );
@@ -121,7 +124,11 @@ const UserOpenRequest = ({ getOpenStatus, requests, loading }) => {
                 <td>{request.email ? request.email : "NA"}</td>
 
                 <td>
-                  {request.priority === "low" ? lowPriority : highPriority}
+                  {request.priority === "low"
+                    ? lowPriority
+                    : request.priority === "moderate"
+                    ? modPriority
+                    : highPriority}
                 </td>
               </tr>
             ))}

@@ -46,6 +46,9 @@ const SuperAdminRequest = ({
   const highPriority = (
     <span className="badge badge-danger text-center">High</span>
   );
+  const modPriority = (
+    <span className="badge badge-info text-center">Moderate</span>
+  );
   const lowPriority = (
     <span className="badge badge-warning text-center">Low</span>
   );
@@ -131,8 +134,11 @@ const SuperAdminRequest = ({
                       {req.openStatus === true ? openStatus : closeStatus}
                     </td>
                     <td>
-                      {" "}
-                      {req.priority === "low" ? lowPriority : highPriority}
+                      {req.priority === "low"
+                        ? lowPriority
+                        : req.priority === "moderate"
+                        ? modPriority
+                        : highPriority}
                     </td>
                     <td>
                       {req.closeDate ? (
