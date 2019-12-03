@@ -28,9 +28,9 @@ const SuperAdminRequest = ({
     //eslint-diable-next-line
   }, [getAllRequests]);
 
-  const onDeleteHandler = id => {
-    deleteRequest(id, history);
-  };
+  // const onDeleteHandler = id => {
+  //   deleteRequest(id, history);
+  // };
 
   const openStatus = (
     <i class="fa fa-clock-o text-warning text-center" aria-hidden="true"></i>

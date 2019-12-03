@@ -16,7 +16,6 @@ const MyProfile = ({
     country,
     state,
     city,
-    photo,
     companyAddress,
     companyPhone,
     companyEmail,

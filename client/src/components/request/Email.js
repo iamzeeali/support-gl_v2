@@ -1,27 +1,17 @@
 import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Spinner from "../UI/Spinner";
-import { getEmails, deleteEmail } from "../../_actions/requestAction";
+import { getEmails } from "../../_actions/requestAction";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import "moment-timezone";
 
-const Email = ({
-  getEmails,
-  deleteEmail,
-  emails,
-  loading,
-  auth: { company }
-}) => {
+const Email = ({ getEmails, emails, loading, auth: { company } }) => {
   useEffect(() => {
     getEmails();
     //eslint-diable-next-line
   }, [getEmails]);
-
-  const onDeleteHandler = id => {
-    deleteEmail(id);
-  };
 
   return (
     <Fragment>
@@ -82,8 +72,7 @@ const Email = ({
 };
 
 Email.propTypes = {
-  getEmails: PropTypes.func.isRequired,
-  deleteEmails: PropTypes.func.isRequired
+  getEmails: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -92,6 +81,5 @@ const mapStateToProps = state => ({
   loading: state.company.loading
 });
 export default connect(mapStateToProps, {
-  getEmails,
-  deleteEmail
+  getEmails
 })(Email);

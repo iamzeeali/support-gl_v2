@@ -164,6 +164,7 @@ const SuperAdminDashboard = ({
                     src={comp.photo}
                     className="img-thumbnail my-2"
                     style={{ maxWidth: "150px" }}
+                    alt="company logo"
                   />
                 </div>
               ))}
