@@ -139,6 +139,7 @@ const AddEmail = ({ auth: { username }, addEmail, sendingLoader, history }) => {
                         <option value="low" default>
                           Low
                         </option>
+                        <option value="moderate">Moderate</option>
                         <option value="high">High</option>
                       </select>
                     </div>

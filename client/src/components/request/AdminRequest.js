@@ -115,8 +115,14 @@ const AdminRequest = ({
                 <td>
                   {request.openStatus === true ? openStatus : closeStatus}
                 </td>
-                <td>{request.description && request.description}</td>
-                <td>{request.email && request.email}</td>
+                <td>
+                  {request.description ? (
+                    request.description
+                  ) : (
+                    <span className="text-muted">No Description</span>
+                  )}
+                </td>
+                <td>{request.email ? request.email : "NA"}</td>
                 <td>
                   {request.priority === "low" ? lowPriority : highPriority}
                 </td>

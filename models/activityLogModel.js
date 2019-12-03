@@ -32,7 +32,7 @@ const activityLogSchema = new mongoose.Schema({
   },
   priority: {
     type: String,
-    enum: ["low", "high"],
+    enum: ["low", "moderate", "high"],
     default: "low"
   },
   closeDate: {
