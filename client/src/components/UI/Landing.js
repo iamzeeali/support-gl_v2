@@ -21,7 +21,7 @@ const Landing = ({ isAuthenticated }) => {
             {/* <Link className="btn btn-outline-secondary btn-lg" to="/register">
               Sign Up
             </Link> */}
-            <Link className="btn btn-outline-primary btn-lg" to="/login">
+            <Link className="btn btn-primary btn-lg" to="/login">
               Log In
             </Link>
           </div>
