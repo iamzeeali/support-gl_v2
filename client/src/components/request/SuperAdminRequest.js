@@ -7,6 +7,7 @@ import {
   clearRequest,
   deleteRequest
 } from "../../_actions/requestAction";
+import FilterRequest from "./FilterRequest";
 import Moment from "react-moment";
 import "moment-timezone";
 import PropTypes from "prop-types";
@@ -81,9 +82,13 @@ const SuperAdminRequest = ({
         </small>
       </div>
 
+      <div className="container">
+        <FilterRequest />
+        <br />
+      </div>
       {requests !== null && !loading ? (
-        <table className="table table-responsive table-bordered container animated fadeIn my-2">
-          <thead>
+        <table className="table table-responsive container animated fadeIn my-2">
+          <thead className="thead-dark">
             <tr>
               <th scope="col">Activity</th>
               <th scope="col">Sub Activities</th>
@@ -100,48 +105,101 @@ const SuperAdminRequest = ({
           </thead>
 
           <tbody>
-            {requests.map(req => (
-              <tr key={req._id}>
-                <td>{req.activity}</td>
-                <td>{req.subActivity}</td>
-                <td>{req.user && req.user.name}</td>
-                <td>{req.user && req.user.company.companyName}</td>
-                <td>
-                  {" "}
-                  <Moment format="DD/MM/YYYY, h:mm:ss a">{req.date}</Moment>
-                </td>
-                <td>
-                  {req.description ? (
-                    req.description
-                  ) : (
-                    <span className="text-muted">No Description</span>
-                  )}
-                </td>
-                <td>{req.email ? req.email : "NA"}</td>
+            {filtered !== null
+              ? filtered.map(req => (
+                  <tr key={req._id}>
+                    <td>{req.activity}</td>
+                    <td>{req.subActivity}</td>
+                    <td>{req.user && req.user.name}</td>
+                    <td>{req.user && req.user.company.companyName}</td>
+                    <td>
+                      {" "}
+                      <Moment format="DD/MM/YYYY, h:mm:ss a">{req.date}</Moment>
+                    </td>
+                    <td>
+                      {req.description ? (
+                        req.description
+                      ) : (
+                        <span className="text-muted">No Description</span>
+                      )}
+                    </td>
+                    <td>{req.email ? req.email : "NA"}</td>
 
-                <td>{req.openStatus === true ? openStatus : closeStatus}</td>
-                <td> {req.priority === "low" ? lowPriority : highPriority}</td>
-                <td>
-                  {req.closeDate ? (
-                    <Moment format="DD/MM/YYYY, h:mm:ss a">
-                      {req.closeDate}
-                    </Moment>
-                  ) : (
-                    openStatus
-                  )}
-                </td>
+                    <td>
+                      {req.openStatus === true ? openStatus : closeStatus}
+                    </td>
+                    <td>
+                      {" "}
+                      {req.priority === "low" ? lowPriority : highPriority}
+                    </td>
+                    <td>
+                      {req.closeDate ? (
+                        <Moment format="DD/MM/YYYY, h:mm:ss a">
+                          {req.closeDate}
+                        </Moment>
+                      ) : (
+                        openStatus
+                      )}
+                    </td>
 
-                <td>
-                  <Link
-                    title="Update Status"
-                    to={`/editRequest/${req._id}`}
-                    onClick={() => setCurrentRequest(req)}
-                  >
-                    <i className="fa fa-edit fa-lg"></i>
-                  </Link>{" "}
-                </td>
-              </tr>
-            ))}
+                    <td>
+                      <Link
+                        title="Update Status"
+                        to={`/editRequest/${req._id}`}
+                        onClick={() => setCurrentRequest(req)}
+                      >
+                        <i className="fa fa-edit fa-lg"></i>
+                      </Link>{" "}
+                    </td>
+                  </tr>
+                ))
+              : requests.map(req => (
+                  <tr key={req._id}>
+                    <td>{req.activity}</td>
+                    <td>{req.subActivity}</td>
+                    <td>{req.user && req.user.name}</td>
+                    <td>{req.user && req.user.company.companyName}</td>
+                    <td>
+                      {" "}
+                      <Moment format="DD/MM/YYYY, h:mm:ss a">{req.date}</Moment>
+                    </td>
+                    <td>
+                      {req.description ? (
+                        req.description
+                      ) : (
+                        <span className="text-muted">No Description</span>
+                      )}
+                    </td>
+                    <td>{req.email ? req.email : "NA"}</td>
+
+                    <td>
+                      {req.openStatus === true ? openStatus : closeStatus}
+                    </td>
+                    <td>
+                      {" "}
+                      {req.priority === "low" ? lowPriority : highPriority}
+                    </td>
+                    <td>
+                      {req.closeDate ? (
+                        <Moment format="DD/MM/YYYY, h:mm:ss a">
+                          {req.closeDate}
+                        </Moment>
+                      ) : (
+                        openStatus
+                      )}
+                    </td>
+
+                    <td>
+                      <Link
+                        title="Update Status"
+                        to={`/editRequest/${req._id}`}
+                        onClick={() => setCurrentRequest(req)}
+                      >
+                        <i className="fa fa-edit fa-lg"></i>
+                      </Link>{" "}
+                    </td>
+                  </tr>
+                ))}
           </tbody>
         </table>
       ) : (

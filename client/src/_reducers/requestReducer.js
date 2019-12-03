@@ -46,12 +46,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         requests: payload,
+
         loading: false
       };
     case types.GET_30_DAYS_REQUESTS:
       return {
         ...state,
         requests: payload,
+
         loading: false
       };
     case types.GET_30_DAYS_REQUESTS_COUNT:
@@ -131,20 +133,22 @@ export default function(state = initialState, action) {
         loading: false
       };
 
-    // case types.FILTER_ACTIVITY:
-    //   return {
-    //     ...state,
-    //     filtered: state.activities.filter(activity => {
-    //       const regex = new RegExp(`${action.payload}`, "gi");
-    //       return (
-    //         staff.firstName.match(regex) ||
-    //         staff.lastName.match(regex) ||
-    //         staff.email.match(regex) ||
-    //         staff.mobile.match(regex) ||
-    //         staff.username.match(regex)
-    //       );
-    //     })
-    //   };
+    case types.FILTER_REQUEST:
+      return {
+        ...state,
+        filtered: state.requests.data.filter(requ => {
+          const regex = new RegExp(`${action.payload}`, "gi");
+          return (
+            requ.activity.match(regex) ||
+            requ.user.name.match(regex) ||
+            requ.user.company.companyName.match(regex) ||
+            // requ.subActivity.match(regex) ||
+            requ.email.match(regex) ||
+            // requ.closeDate.match(regex) ||
+            requ.priority.match(regex)
+          );
+        })
+      };
     case types.CLEAR_FILTER:
       return {
         ...state,
