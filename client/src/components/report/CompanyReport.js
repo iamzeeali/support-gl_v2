@@ -33,7 +33,7 @@ const CompanyReport = ({
             label: "Requests",
             data: [
               companyOpenStatusCount,
-              companyRequests.result - companyOpenStatusCount
+              companyRequests.length - companyOpenStatusCount
             ],
             backgroundColor: ["#0083e8", "#ecf000"]
           }
@@ -78,7 +78,7 @@ const CompanyReport = ({
                 <div className="card-counter primary">
                   <i className="fa fa-list"></i>
                   <span className="count-numbers display-4">
-                    {companyRequests.result}
+                    {companyRequests.length}
                   </span>
                   <span className="count-name">Total Requests</span>
                 </div>
