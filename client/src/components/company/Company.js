@@ -28,12 +28,14 @@ const Company = ({
     deleteCompany(id);
   };
 
+  const NA = <span className="text-muted">---</span>;
+
   return (
     <Fragment>
       <div className="form-title animated fadeIn">
-        <Link to="/" className="float-right">
+        <Link to="/" className="">
           <i
-            className="fa fa-home fa-lg text-dark border border-dark rounded-circle p-2"
+            className="fa fa-home fa-lg text-muted bg-light rounded-circle p-2"
             aria-hidden="true"
           ></i>
         </Link>
@@ -44,10 +46,10 @@ const Company = ({
         <small className="lead">Available Companies in the portal...</small>
       </div>
 
-      <div className="container">
+      <div className="container py-4">
         {companies !== null && !loading ? (
-          <table className="table animated fadeIn my-2">
-            <thead>
+          <table className="table table-responsive-md table-bordered table-hover animated fadeIn my-2">
+            <thead className="thead-dark">
               <tr>
                 <th>Company</th>
                 <th>Alias</th>
@@ -64,14 +66,16 @@ const Company = ({
             <tbody>
               {companies.map(comp => (
                 <tr key={comp._id}>
-                  <td>{comp.companyName}</td>
+                  <td>
+                    <b>{comp.companyName}</b>
+                  </td>
                   <td>{comp.shortName}</td>
-                  <td>{comp.country}</td>
-                  <td>{comp.state}</td>
-                  <td>{comp.city}</td>
-                  <td>{comp.companyAddress}</td>
-                  <td>{comp.companyPhone}</td>
-                  <td>{comp.companyEmail}</td>
+                  <td>{comp.country ? comp.country : NA}</td>
+                  <td>{comp.state ? comp.state : NA}</td>
+                  <td>{comp.city ? comp.city : NA}</td>
+                  <td>{comp.companyAddress ? comp.companyAddress : NA}</td>
+                  <td>{comp.companyPhone ? comp.companyPhone : NA}</td>
+                  <td>{comp.companyEmail ? comp.companyEmail : NA}</td>
                   <td>
                     <Link
                       title="Edit"

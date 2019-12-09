@@ -1,6 +1,6 @@
 const ActivityLog = require("../models/activityLogModel");
 const factory = require("./handlerFactory");
-
+const paginate = require("jw-paginate");
 const sendEmail = require("../utils/email");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
@@ -92,17 +92,30 @@ exports.createActivityLog = catchAsync(async (req, res, next) => {
 
 //Get user's logs only
 exports.getActivityLogs = catchAsync(async (req, res, next) => {
-  console.log(req.query);
   const features = await new APIFeatures(
     ActivityLog.find({ user: req.user.id }),
     req.query
   )
     .sort()
+    .limitFields()
     .paginate();
   const docs = await features.query;
   res.status(200).json({
     status: "success",
     result: docs.length,
+    data: docs
+  });
+});
+
+//Get user's all logs  count
+exports.getActivityLogsCount = catchAsync(async (req, res, next) => {
+  //to allow for nested getReviews on tour (small hack)
+  const docs = await ActivityLog.find({
+    user: req.user.id
+  }).countDocuments();
+
+  res.status(200).json({
+    status: "success",
     data: docs
   });
 });
@@ -149,11 +162,9 @@ exports.get30daysActivityLogs = catchAsync(async (req, res, next) => {
       }
     }),
     req.query
-  )
-    .sort({
-      date: -1
-    })
-    .paginate();
+  ).sort({
+    date: -1
+  });
 
   const docs = await features.query;
   res.status(200).json({
@@ -191,7 +202,9 @@ exports.getCompanyActivityLogs = catchAsync(async (req, res, next) => {
     req.query
   )
     .sort()
+    .limitFields()
     .paginate();
+
   const docs = await features.query;
   res.status(200).json({
     status: "success",
@@ -220,7 +233,10 @@ exports.getCompanyOpenStatus = catchAsync(async (req, res, next) => {
   const docs = await ActivityLog.find({
     company: req.user.company.id,
     openStatus: true
-  });
+  })
+    .sort()
+    .limitFields()
+    .paginate();
 
   res.status(200).json({
     status: "success",
@@ -242,11 +258,9 @@ exports.getCompany30daysActivityLogs = catchAsync(async (req, res, next) => {
       }
     }),
     req.query
-  )
-    .sort({
-      date: -1
-    })
-    .paginate();
+  ).sort({
+    date: -1
+  });
 
   const docs = await features.query;
   res.status(200).json({
@@ -287,7 +301,9 @@ exports.getAllActivityLogs = catchAsync(async (req, res, next) => {
     .sort({
       date: -1
     })
+    .limitFields()
     .paginate();
+
   const docs = await features.query;
   res.status(200).json({
     status: "success",

@@ -27,13 +27,13 @@ const Email = ({ getEmails, emails, loading, auth: { company } }) => {
         </Link>{" "}
         <br />
         <div class="btn-group p-4" role="group" aria-label="Basic example">
-          <Link to="/addEmail" class="btn btn-secondary">
+          <Link to="/addEmail" class="btn btn-primary">
             Add Email
           </Link>
-          <Link to="/deleteEmail" class="btn btn-secondary">
+          <Link to="/deleteEmail" class="btn btn-primary">
             Suspend Email
           </Link>
-          <Link to="/changePassword" class="btn btn-secondary">
+          <Link to="/changePassword" class="btn btn-primary">
             Change Password
           </Link>
         </div>

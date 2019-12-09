@@ -33,12 +33,8 @@ const Navbar = ({
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <Link className="nav-link lead" to="/">
-                  Home <span className="sr-only">(current)</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link lead" to="/about">
-                  About
+                  <i className="fa fa-home fa-lg"></i>{" "}
+                  <span className="sr-only">(current)</span>
                 </Link>
               </li>
             </ul>
@@ -46,13 +42,9 @@ const Navbar = ({
               <input
                 className="form-control mr-sm-2"
                 type="search"
-                placeholder="Search"
                 aria-label="Search"
               />
-              <button
-                className="btn btn-outline-primary my-2 my-sm-0"
-                type="submit"
-              >
+              <button className="btn btn-primary my-2 my-sm-0" type="submit">
                 Search
               </button>
             </form>
@@ -102,7 +94,7 @@ const Navbar = ({
                   className="nav-link lead"
                   data-tip={`Logout ${username}`}
                 >
-                  <i className="fa fa-sign-out fa-lg"></i>
+                  <i className="fa fa-sign-out pt-2"> Logout</i>
                 </Link>
               </li>
             </ul>
@@ -245,7 +237,7 @@ const Navbar = ({
                   className="nav-link lead"
                   data-tip={`Logout ${username}`}
                 >
-                  <i className="fa fa-sign-out fa-lg"></i>
+                  <i className="fa fa-sign-out pt-2"> Logout</i>
                 </Link>
               </li>
             </ul>
@@ -288,18 +280,8 @@ const Navbar = ({
               </li>
             </ul>
             <form className="form-inline my-2 my-lg-0">
-              <input
-                className="form-control mr-sm-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button
-                className="btn btn-outline-primary my-2 my-sm-0"
-                type="submit"
-              >
-                Search
-              </button>
+              <input className="form-control mr-sm-2" />
+              <i className="fa fa-search text-secondary"></i>
             </form>
 
             <ul className="navbar-nav ml-4">

@@ -12,16 +12,13 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="">Globus Labs Support Portal</h1>
+          <h1 className="display-4">Globus Labs Support Portal</h1>
 
           <p className="lead">
             Manage all your business processes better with Globus Labs.
           </p>
-          <div className="btn-group" role="group" aria-label="Basic example">
-            {/* <Link className="btn btn-outline-secondary btn-lg" to="/register">
-              Sign Up
-            </Link> */}
-            <Link className="btn btn-primary btn-lg" to="/login">
+          <div className="col-sm-5">
+            <Link className="btn btn-primary btn-block btn-lg" to="/login">
               Log In
             </Link>
           </div>

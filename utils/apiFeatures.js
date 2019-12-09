@@ -45,11 +45,11 @@ class APIFeatures {
 
   paginate() {
     //4. Pagination
-    const page = this.queryString.page * 1 || 1;
-    const limit = this.queryString.limit * 1 || 1000;
-    const skip = (page - 1) * limit;
+    const start = this.queryString.start * 1 || 1;
+    const count = this.queryString.count * 1 || 30;
+    const skip = (start - 1) * count;
 
-    this.query = this.query.skip(skip).limit(limit);
+    this.query = this.query.skip(skip).limit(count);
 
     return this;
   }

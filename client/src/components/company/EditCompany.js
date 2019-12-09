@@ -87,14 +87,14 @@ const EditCompany = ({
   return (
     <Fragment>
       <div className="form-title animated fadeIn">
-        <Link to="/" className="float-right">
+        <Link to="/company">
+          <i className="fa fa-arrow-left text-muted bg-light rounded-circle p-2"></i>
+        </Link>{" "}
+        <Link to="/" className="">
           <i
-            className="fa fa-home fa-lg text-dark border border-dark rounded-circle p-2"
+            className="fa fa-home fa-lg text-muted bg-light rounded-circle p-2"
             aria-hidden="true"
           ></i>
-        </Link>
-        <Link to="/company" className="btn btn-primary">
-          <i className="fa fa-arrow-left"> </i> Go Back
         </Link>
         <h1 className="pt-4">Edit Company</h1>
         <small className="lead">Update Company...</small>
@@ -288,7 +288,6 @@ const mapStateToProps = state => ({
   company: state.company
 });
 
-export default connect(
-  mapStateToProps,
-  { editCompany, getCurrentCompany }
-)(withRouter(EditCompany));
+export default connect(mapStateToProps, { editCompany, getCurrentCompany })(
+  withRouter(EditCompany)
+);

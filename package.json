@@ -33,6 +33,7 @@
     "hpp": "^0.2.2",
     "js-beautify": "1.6.14",
     "jsonwebtoken": "^8.5.1",
+    "jw-paginate": "^1.0.4",
     "jwt-decode": "^2.2.0",
     "mongoose": "^5.7.7",
     "mongoose-unique-validator": "^2.0.3",

@@ -5,14 +5,15 @@ import { connect } from "react-redux";
 
 import { Bar, Pie } from "react-chartjs-2";
 import {
-  getRequests,
+  getRequestsCount,
   getOpenStatusCount,
   get30DaysRequestsCount
 } from "../../_actions/requestAction";
 
 const MyReport = ({
   auth: { company, username, role },
-  requests,
+  requests_count,
+  getRequestsCount,
   openStatusCount,
   thirtyDaysRequestsCount
 }) => {
@@ -22,6 +23,7 @@ const MyReport = ({
   });
 
   useEffect(() => {
+    getRequestsCount();
     setChartData({
       ...chartData,
       PieChartData: {
@@ -29,7 +31,7 @@ const MyReport = ({
         datasets: [
           {
             label: "Requests",
-            data: [openStatusCount, requests.result - openStatusCount],
+            data: [openStatusCount, requests_count - openStatusCount],
             backgroundColor: ["#0083e8", "#ecf000"]
           }
         ]
@@ -69,7 +71,7 @@ const MyReport = ({
           <div className="col-md-4 animated zoomIn">
             <div className="card-counter primary">
               <i className="fa fa-list"></i>
-              <span className="count-numbers display-4">{requests.result}</span>
+              <span className="count-numbers display-4">{requests_count}</span>
               <span className="count-name">Total Requests</span>
             </div>
           </div>
@@ -142,7 +144,7 @@ const MyReport = ({
 
 MyReport.propTypes = {
   auth: PropTypes.object.isRequired,
-  requests: PropTypes.array.isRequired,
+  requests_count: PropTypes.array.isRequired,
   getOpenStatusCount: PropTypes.func.isRequired,
   get30DaysRequestsCount: PropTypes.func.isRequired,
   getRequests: PropTypes.func.isRequired
@@ -150,14 +152,14 @@ MyReport.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  requests: state.request.requests,
+  requests_count: state.request.requests_count,
   openStatusCount: state.request.openStatusCount,
   thirtyDaysRequestsCount: state.request.thirtyDaysRequestsCount,
   loading: state.request.loading
 });
 
 export default connect(mapStateToProps, {
-  getRequests,
+  getRequestsCount,
   getOpenStatusCount,
   get30DaysRequestsCount
 })(withRouter(MyReport));

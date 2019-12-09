@@ -11,12 +11,16 @@
   margin: 0;
   padding: 0;
 }
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
 
 .App {
   text-align: center;
 }
-.back-image {
-}
+
 .App-logo {
   height: 40vmin;
 }
@@ -688,22 +692,23 @@ input:checked + .slider:before {
 /*************************************************PROFILE**************************************************************/
 
 .profile-page .page-header {
-  height: 250px;
+  height: 300px;
   background-position: center;
 }
 
 .page-header {
   height: 100vh;
   background-size: cover;
-  /* background: rgb(33, 22, 212);
+  background: rgb(33, 22, 212);
   background: linear-gradient(
     90deg,
     rgba(33, 22, 212, 1) 0%,
     rgba(33, 150, 243, 1) 74%,
     rgba(0, 212, 255, 1) 100%
-  ); */
-  background: url("https://www.up.edu/alumni/images/la-chapter-banner.png")
-    no-repeat center center/cover;
+  );
+  /* background: url("https://www.up.edu/alumni/images/la-chapter-banner.png")
+    no-repeat center center/cover; */
+
   margin: 0;
   padding: 0;
   border: 0;
@@ -823,8 +828,8 @@ p {
 }
 
 .thought {
-  margin-top: 130px;
-  margin-bottom: 50px;
+  margin-top: 30vh;
+  margin-bottom: 10px;
 }
 
 .table th,
@@ -892,7 +897,6 @@ td {
   font-size: 18px;
 }
 
-
 /* *****************************************************UPLOAD CSS******************************************************* */
 /* main application styling */
 
@@ -946,4 +950,73 @@ td {
   text-align: center;
   color: white;
   font-weight: bold;
+}
+
+/* LOADING..... */
+#loader.background {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+#loader .dots {
+  height: 40px;
+  position: absolute;
+  left: 5%;
+  /* margin: -20px 0 0 -50px; */
+  z-index: 999999;
+}
+#loader .dots span {
+  -webkit-transition: all 6000ms ease;
+  transition: all 6000ms ease;
+  background: #ccc;
+  height: 5px;
+  width: 5px;
+  margin: 0 2px 0 0;
+  display: inline-block;
+  border-radius: 50%;
+  animation: wave 2s ease infinite;
+  -webkit-animation: wave 2s ease infinite;
+}
+
+#loader .dots span:nth-child(1) {
+  animation-delay: 0;
+  -webkit-animation-delay: 0;
+}
+#loader .dots span:nth-child(2) {
+  animation-delay: 100ms;
+  -webkit-animation-delay: 100ms;
+}
+#loader .dots span:nth-child(3) {
+  animation-delay: 200ms;
+  -webkit-animation-delay: 200ms;
+}
+
+@-webkit-keyframes wave {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    background-color: #ccc;
+  }
+  10% {
+    -webkit-transform: translate(0, -15px);
+    transform: translate(0, -15px);
+    background-color: #ccc;
+  }
+}
+
+@keyframes wave {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    background-color: #ccc;
+  }
+  10% {
+    -webkit-transform: translate(0, -15px);
+    transform: translate(0, -15px);
+    background-color: #ccc;
+  }
 }

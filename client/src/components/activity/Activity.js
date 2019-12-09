@@ -31,9 +31,9 @@ const Activity = ({
   return (
     <Fragment>
       <div className="form-title animated fadeIn">
-        <Link to="/" className="float-right">
+        <Link to="/" className="">
           <i
-            className="fa fa-home fa-lg text-dark border border-dark rounded-circle p-2"
+            className="fa fa-home fa-lg text-muted bg-light rounded-circle p-2"
             aria-hidden="true"
           ></i>
         </Link>
@@ -43,56 +43,58 @@ const Activity = ({
         <h1 className="pt-4">Activities</h1>
         <small className="lead">Available activities in the portal...</small>
       </div>
-
-      {activities !== null && !loading ? (
-        <table className="table animated fadeIn my-2">
-          <thead>
-            <tr>
-              <th>Activity</th>
-              <th>Sub Activities</th>
-              <th>Company</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {activities.map(act => (
-              <tr key={act._id}>
-                <td>{act.activityName}</td>
-
-                <td>
-                  <ul style={{ padding: "0", listStyleType: "none" }}>
-                    {act.subActivities.slice(0, 4).map((subAct, index) => (
-                      <li key={index}>{subAct}</li>
-                    ))}
-                  </ul>
-                </td>
-                <td>{act.company && act.company.companyName}</td>
-
-                <td>
-                  <Link
-                    title="Edit"
-                    to={`/editActivity/${act._id}`}
-                    onClick={() => setCurrentActivity(act)}
-                  >
-                    <i className="fa fa-edit fa-lg"></i>
-                  </Link>{" "}
-                  &nbsp; &nbsp;
-                  <Link
-                    title="Delete"
-                    to="#!"
-                    onClick={() => onDeleteHandler(act._id)}
-                  >
-                    <i className="fa fa-trash text-danger fa-lg"></i>
-                  </Link>
-                </td>
+      .
+      <div class="container py-4">
+        {activities !== null && !loading ? (
+          <table className="table animated table-hover table-bordered fadeIn my-2">
+            <thead className="thead-dark">
+              <tr>
+                <th>Activity</th>
+                <th>Sub Activities</th>
+                <th>Company</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <Spinner />
-      )}
+            </thead>
+
+            <tbody>
+              {activities.map(act => (
+                <tr key={act._id}>
+                  <td>{act.activityName}</td>
+
+                  <td>
+                    <ul style={{ padding: "0", listStyleType: "none" }}>
+                      {act.subActivities.slice(0, 4).map((subAct, index) => (
+                        <li key={index}>{subAct}</li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td>{act.company && act.company.companyName}</td>
+
+                  <td>
+                    <Link
+                      title="Edit"
+                      to={`/editActivity/${act._id}`}
+                      onClick={() => setCurrentActivity(act)}
+                    >
+                      <i className="fa fa-edit fa-lg"></i>
+                    </Link>{" "}
+                    &nbsp; &nbsp;
+                    <Link
+                      title="Delete"
+                      to="#!"
+                      onClick={() => onDeleteHandler(act._id)}
+                    >
+                      <i className="fa fa-trash text-danger fa-lg"></i>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <Spinner />
+        )}
+      </div>
     </Fragment>
   );
 };

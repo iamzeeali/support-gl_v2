@@ -3,6 +3,7 @@ import * as types from "../_actions/types";
 const initialState = {
   request: null,
   requests: [],
+  requests_count: null,
   companyRequests: [],
   emails: [],
   email: null,
@@ -33,9 +34,22 @@ export default function(state = initialState, action) {
     case types.GET_REQUESTS:
       return {
         ...state,
-        requests: payload,
+        requests: payload.data,
         loading: false
       };
+    case types.GET_REQUESTS_COUNT:
+      return {
+        ...state,
+        requests_count: payload.data,
+        loading: false
+      };
+    case types.FETCH_REQUESTS:
+      return {
+        ...state,
+        requests: state.requests.concat(payload.data),
+        loading: false
+      };
+
     case types.GET_OPEN_STATUS_COUNT:
       return {
         ...state,
@@ -45,7 +59,7 @@ export default function(state = initialState, action) {
     case types.GET_OPEN_STATUS:
       return {
         ...state,
-        requests: payload,
+        requests: payload.data,
 
         loading: false
       };
@@ -53,7 +67,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         requests: payload,
-
         loading: false
       };
     case types.GET_30_DAYS_REQUESTS_COUNT:
@@ -66,8 +79,14 @@ export default function(state = initialState, action) {
     case types.GET_COMPANY_REQUESTS:
       return {
         ...state,
-        companyRequests: payload,
+        companyRequests: payload.data,
         companyRequestLoading: false
+      };
+    case types.FETCH_COMPANY_REQUESTS:
+      return {
+        ...state,
+        companyRequests: state.companyRequests.concat(payload.data),
+        loading: false
       };
     case types.GET_COMPANY_OPEN_STATUS_COUNT:
       return {
@@ -110,9 +129,23 @@ export default function(state = initialState, action) {
       return {
         ...state,
         request: null,
-
+        requests: [],
+        requests_count: null,
+        companyRequests: [],
+        emails: [],
+        email: null,
+        error: {},
+        filtered: null,
         loading: true,
-        sendingLoader: false
+        companyRequestLoading: true,
+        sendingLoader: false,
+        open: null,
+        openStatus: null,
+        companyOpenStatus: null,
+        thirtyDaysRequestsCount: null,
+        companyThirtyDaysRequestsCount: null,
+        openStatusCount: null,
+        companyOpenStatusCount: null
       };
     case types.GET_EMAILS:
       return {
@@ -136,7 +169,7 @@ export default function(state = initialState, action) {
     case types.FILTER_REQUEST:
       return {
         ...state,
-        filtered: state.requests.data.filter(requ => {
+        filtered: state.requests.filter(requ => {
           const regex = new RegExp(`${action.payload}`, "gi");
           return (
             requ.activity.match(regex) ||

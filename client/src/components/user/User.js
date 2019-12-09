@@ -18,9 +18,9 @@ const User = ({ getUsers, users, loading }) => {
   return (
     <Fragment>
       <div className="form-title animated fadeIn">
-        <Link to="/" className="float-right">
+        <Link to="/" className="">
           <i
-            className="fa fa-home fa-lg text-dark border border-dark rounded-circle p-2"
+            className="fa fa-home fa-lg text-muted bg-light rounded-circle p-2"
             aria-hidden="true"
           ></i>
         </Link>
@@ -31,31 +31,33 @@ const User = ({ getUsers, users, loading }) => {
         <small className="lead">Available Users in the portal...</small>
       </div>
 
-      {users !== null && !loading ? (
-        <table className="table animated fadeIn my-2">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Company</th>
-              <th>Email</th>
-              <th>Role</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {users.map(user => (
-              <tr key={user._id}>
-                <td>{user.name}</td>
-                <td>{user.company ? user.company.companyName : "NA"}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
+      <div class="container py-4">
+        {users !== null && !loading ? (
+          <table className="table table-responsive-md table-hover table-bordered animated fadeIn my-2">
+            <thead className="thead-dark">
+              <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Role</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <Spinner />
-      )}
+            </thead>
+
+            <tbody>
+              {users.map(user => (
+                <tr key={user._id}>
+                  <td>{user.name}</td>
+                  <td>{user.company ? user.company.companyName : "NA"}</td>
+                  <td>{user.email}</td>
+                  <td>{user.role}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <Spinner />
+        )}
+      </div>
     </Fragment>
   );
 };
@@ -69,7 +71,4 @@ const mapStateToProps = state => ({
 
   loading: state.auth.loading
 });
-export default connect(
-  mapStateToProps,
-  { getUsers }
-)(User);
+export default connect(mapStateToProps, { getUsers })(User);

@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Spinner from "../UI/Spinner";
 import {
   getOpenStatus,
   setCurrentRequest,
@@ -11,6 +10,7 @@ import Moment from "react-moment";
 import "moment-timezone";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Skeleton from "react-loading-skeleton";
 
 const UserOpenRequest = ({ getOpenStatus, requests, loading }) => {
   useEffect(() => {
@@ -135,7 +135,9 @@ const UserOpenRequest = ({ getOpenStatus, requests, loading }) => {
           </tbody>
         </table>
       ) : (
-        <Spinner />
+        <div class="container">
+          <Skeleton count={30} height={30} />
+        </div>
       )}
     </Fragment>
   );
@@ -149,7 +151,7 @@ UserOpenRequest.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  requests: state.request.requests.data,
+  requests: state.request.requests,
   request: state.request.request,
   filtered: state.request.filtered,
   loading: state.request.loading

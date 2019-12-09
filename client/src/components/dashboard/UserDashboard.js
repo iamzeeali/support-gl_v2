@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-  getRequests,
+  getRequestsCount,
   getCompanyRequests,
   getOpenStatusCount,
   get30DaysRequestsCount,
@@ -18,7 +18,8 @@ import moment from "moment";
 
 const UserDashboard = ({
   auth: { company, username },
-  requests,
+  requests_count,
+  getRequestsCount,
   openStatusCount,
   getOpenStatusCount,
   thirtyDaysRequestsCount,
@@ -26,39 +27,27 @@ const UserDashboard = ({
   getCompanyOpenStatusCount,
   getCompany30DaysRequestsCount,
   getCompanyRequests,
-  getRequests,
   loading
 }) => {
   useEffect(() => {
-    getRequests();
     getOpenStatusCount();
     get30DaysRequestsCount();
     getCompanyOpenStatusCount();
     getCompany30DaysRequestsCount();
     getCompanyRequests();
-    //eslint-diable-next-line
-  }, [
-    getRequests,
-    getOpenStatusCount,
-    get30DaysRequestsCount,
-    getCompanyOpenStatusCount,
-    getCompany30DaysRequestsCount,
-    getCompanyRequests
-  ]);
+    getRequestsCount();
+  }, []);
 
-  const me = !username ? "" : username;
+  const me = <Link to="/myprofile">{!username ? "" : username}</Link>;
 
   const mycompany = !company.companyName ? "" : company.companyName;
   return (
     <Fragment>
-      {requests === null || loading ? (
+      {loading ? (
         <Spinner />
       ) : (
         <div>
-          <h1 className={`display-4`}>
-            {" "}
-            <i className="fa fa-tachometer text-secondary"></i> Dashboard{" "}
-          </h1>
+          <h1 className={`display-4`}>Dashboard </h1>
 
           <p className="lead">
             Welcome {me}, {mycompany}{" "}
@@ -79,7 +68,9 @@ const UserDashboard = ({
                         </div>
                         <h6 className="text-uppercase">REQUESTS</h6>
                         <small>Total no of requests</small>
-                        <h1 className="display-4">{requests.result}</h1>
+                        <h1 className="display-4">
+                          {requests_count ? requests_count : "..."}
+                        </h1>
                       </div>
                     </div>
                   </Link>
@@ -132,11 +123,10 @@ const UserDashboard = ({
               {/* Thought */}
               <br />
               <div className="container">
-                <div className="thought text-center bg-light p-4 animated fadeIn">
-                  <h3 className="text-secondary lead">
+                <div className="card thought col-sm-6 mx-auto text-center bg-dark pt-3 animated pulse">
+                  <p className="text-secondary">
                     “Learn from yesterday, live for today, hope for tomorrow”
-                  </h3>
-                  <p className="lead text-secondary">- Albert Einstein</p>
+                  </p>
                 </div>
               </div>
             </div>
@@ -149,7 +139,7 @@ const UserDashboard = ({
 
 UserDashboard.propTypes = {
   auth: PropTypes.object.isRequired,
-  requests: PropTypes.array.isRequired,
+  getRequestsCount: PropTypes.func.isRequired,
   getOpenStatusCount: PropTypes.func.isRequired,
   get30DaysRequestsCount: PropTypes.func.isRequired,
   getRequests: PropTypes.func.isRequired,
@@ -160,7 +150,7 @@ UserDashboard.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  requests: state.request.requests,
+  requests_count: state.request.requests_count,
   openStatusCount: state.request.openStatusCount,
   thirtyDaysRequestsCount: state.request.thirtyDaysRequestsCount,
   companyRequests: state.request.companyRequests,
@@ -171,7 +161,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  getRequests,
+  getRequestsCount,
   getOpenStatusCount,
   get30DaysRequestsCount,
   getCompanyOpenStatusCount,

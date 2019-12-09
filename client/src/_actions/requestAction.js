@@ -21,14 +21,52 @@ export const getCurrentRequest = id => async dispatch => {
 
 //*****************************************LOGGED IN USER DATA****************************************** */
 //Get user's Requests
-export const getRequests = () => async dispatch => {
+export const getRequests = (count, start) => async dispatch => {
   try {
-    const res = await axios.get(`/api/activityLog`);
+    const res = await axios.get(
+      `/api/activityLog?count=${count}&start=${start}`
+    );
     dispatch({
       type: types.GET_REQUESTS,
       payload: res.data
     });
   } catch (err) {
+    dispatch({
+      type: types.REQUEST_ERROR,
+      payload: { status: err.response }
+    });
+  }
+};
+
+//Get user's Requests Count
+export const getRequestsCount = () => async dispatch => {
+  try {
+    const res = await axios.get(`/api/activityLog/count`);
+    dispatch({
+      type: types.GET_REQUESTS_COUNT,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: types.REQUEST_ERROR,
+      payload: { status: err.response }
+    });
+  }
+};
+
+//Fetch user's Requests
+export const fetchRequests = (count, start) => async dispatch => {
+  try {
+    const res = await axios.get(
+      `/api/activityLog?count=${count}&start=${start}`
+    );
+    dispatch({
+      type: types.FETCH_REQUESTS,
+      payload: res.data
+    });
+  } catch (err) {
+    console.log(err);
+
     dispatch({
       type: types.REQUEST_ERROR,
       payload: { status: err.response }
@@ -102,11 +140,31 @@ export const get30DaysRequestsCount = () => async dispatch => {
 
 //*****************************************LOGGED IN COMPANY DATA****************************************************** */
 //Get company's Requests
-export const getCompanyRequests = () => async dispatch => {
+export const getCompanyRequests = (count, start) => async dispatch => {
   try {
-    const res = await axios.get("/api/activityLog/company");
+    const res = await axios.get(
+      `/api/activityLog/company?count=${count}&start=${start}`
+    );
     dispatch({
       type: types.GET_COMPANY_REQUESTS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: types.REQUEST_ERROR,
+      payload: { status: err.response }
+    });
+  }
+};
+
+//Fetch Company Requests
+export const fetchCompanyRequests = (count, start) => async dispatch => {
+  try {
+    const res = await axios.get(
+      `/api/activityLog/company?count=${count}&start=${start}`
+    );
+    dispatch({
+      type: types.FETCH_COMPANY_REQUESTS,
       payload: res.data
     });
   } catch (err) {
@@ -183,11 +241,31 @@ export const getCompany30DaysRequestsCount = () => async dispatch => {
 
 /****************************************************ALL FOR SUPER ADMIN*********************************************8 */
 //Get all Requests
-export const getAllRequests = () => async dispatch => {
+export const getAllRequests = (count, start) => async dispatch => {
   try {
-    const res = await axios.get("/api/activityLog/all");
+    const res = await axios.get(
+      `/api/activityLog/all?count=${count}&start=${start}`
+    );
     dispatch({
       type: types.GET_REQUESTS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: types.REQUEST_ERROR,
+      payload: { status: err.response }
+    });
+  }
+};
+
+//Fetch AllRequests
+export const fetchAllRequests = (count, start) => async dispatch => {
+  try {
+    const res = await axios.get(
+      `/api/activityLog/all?count=${count}&start=${start}`
+    );
+    dispatch({
+      type: types.FETCH_REQUESTS,
       payload: res.data
     });
   } catch (err) {

@@ -49,14 +49,14 @@ const EditActivity = ({
   return (
     <Fragment>
       <div className="form-title animated fadeIn">
-        <Link to="/" className="float-right">
+        <Link to="/activity">
+          <i className="fa fa-arrow-left text-muted bg-light rounded-circle p-2"></i>
+        </Link>{" "}
+        <Link to="/" className="">
           <i
-            className="fa fa-home fa-lg text-dark border border-dark rounded-circle p-2"
+            className="fa fa-home fa-lg text-muted bg-light rounded-circle p-2"
             aria-hidden="true"
           ></i>
-        </Link>
-        <Link to="/activity" className="btn btn-primary">
-          <i className="fa fa-arrow-left"> </i> Go Back
         </Link>
         <h1 className="pt-4">Edit Activity</h1>
         <small className="lead">Update an Activity...</small>

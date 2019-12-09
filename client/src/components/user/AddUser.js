@@ -47,14 +47,14 @@ const AddUser = ({
   return (
     <Fragment>
       <div className="form-title animated fadeIn">
-        <Link to="/" className="float-right">
+        <Link to="/user">
+          <i className="fa fa-arrow-left text-muted bg-light rounded-circle p-2"></i>
+        </Link>{" "}
+        <Link to="/" className="">
           <i
-            className="fa fa-home fa-lg text-dark border border-dark rounded-circle p-2"
+            className="fa fa-home fa-lg text-muted bg-light rounded-circle p-2"
             aria-hidden="true"
           ></i>
-        </Link>
-        <Link to="/user" className="btn btn-primary">
-          <i className="fa fa-arrow-left"> </i> Go Back
         </Link>
         <h1 className="pt-4">Add User</h1>
       </div>
@@ -171,7 +171,6 @@ const mapStateToProps = state => ({
   companies: state.company.companies,
   auth: state.auth
 });
-export default connect(
-  mapStateToProps,
-  { addUser, getCompanies }
-)(withRouter(AddUser));
+export default connect(mapStateToProps, { addUser, getCompanies })(
+  withRouter(AddUser)
+);
