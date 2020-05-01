@@ -21,17 +21,18 @@ var path = require("path");
 
 const app = express();
 
-const DB = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
-);
+// const DB = process.env.DATABASE.replace(
+// "<PASSWORD>",
+// process.env.DATABASE_PASSWORD
+// );
+const DB = "mongodb://localhost:27017";
 
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB Connected"));
 
@@ -49,7 +50,7 @@ if (process.env.NODE_ENV === "development") {
 const limiter = rateLimit({
   max: 500,
   windowMs: 60 * 60 * 1000,
-  message: "Too many requests from this IP, please try again in an hour!"
+  message: "Too many requests from this IP, please try again in an hour!",
 });
 app.use("/api", limiter);
 

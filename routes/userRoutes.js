@@ -5,6 +5,8 @@ const multer = require("multer");
 
 const router = express.Router();
 
+router.post("/signup", authController.signup);
+
 router.post("/login", authController.login);
 router.post("/forgotPassword", authController.forgotPassword);
 router.patch("/resetPassword/:token", authController.resetPassword);
@@ -18,8 +20,6 @@ router.patch("/updateMe", userController.updateMe);
 router.delete("/deleteMe", userController.deleteMe);
 
 router.patch("/upload/:id", userController.upload);
-
-router.post("/signup", authController.signup);
 
 router.use(authController.restrictTo("super-admin", "admin"));
 
